@@ -2,7 +2,7 @@
 
 ## Overview
 
-Goat Query is a set of libraries designed to provide a standardized way of paging, ordering, selecting, searching, counting, and filtering data. These libraries facilitate efficient query processing and simplify the implementation of these common operations in your API. The SDKs that are currently available are: 
+Goat Query is a set of libraries designed to provide a standardized way of paging, ordering, selecting, searching, counting, and filtering data. These libraries facilitate efficient query processing and simplify the implementation of these common operations in your API. The SDKs that are currently available are:
 
 - `.NET`
 - `Go`
@@ -19,7 +19,7 @@ The following query parameters are supported by Goat Query:
 | ------- | ------- | -------- | ------- | ------------------------------------------------------------------------------------------ |
 | Top     | Integer | No       | 0       | Specifies the maximum number of records to retrieve.                                       |
 | Skip    | Integer | No       | 0       | Specifies the number of records to skip from the beginning.                                |
-| Count   | Boolean | No       | False   | Indicates whether to include the total count of records in the response headers.           |
+| Count   | Boolean | No       | False   | Indicates whether to include the total count of records in the response body.              |
 | OrderBy | String  | No       | ""      | Specifies the field to order the records by.                                               |
 | Select  | String  | No       | ""      | Defines the fields to include in the response. Multiple fields can be separated by commas. |
 | Search  | String  | No       | ""      | Performs a text-based search on the data.                                                  |
@@ -39,7 +39,7 @@ Example: `/api/users?skip=10`
 
 ### Count
 
-If the value of `Count` is `true`, then the total count of records, after `Search` and `Filter` have been applied, will be returned in the response header `x-total-count` as an integer.
+If the value of `Count` is `true`, then the total count of records, after `Search` and `Filter` have been applied, will be returned response body under the property `count`.
 
 Example: `/api/users?count=true`
 
@@ -126,6 +126,22 @@ The response should follow the JSON structure:
 
 ```json
 {
+  "value": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "email": "john.doe@github.com",
+      "firstname": "John",
+      "lastname": "Doe"
+    }
+  ]
+}
+```
+
+If `count` is set to `true`
+
+```json
+{
+  "count": 1,
   "value": [
     {
       "id": "00000000-0000-0000-0000-000000000000",
