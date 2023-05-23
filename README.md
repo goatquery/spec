@@ -153,10 +153,6 @@ If `count` is set to `true`
 }
 ```
 
-#### Headers
-
-If the `Count` query parameter is `true`, then the count will be returned in the response header x-total-count.
-
 ### Error
 
 #### Body
@@ -171,7 +167,3 @@ The response should follow the JSON structure:
   "message": "The query parameter 'Top' could not be parsed to an integer"
 }
 ```
-
-#### Headers
-
-No extra data will be provided in the response headers.
